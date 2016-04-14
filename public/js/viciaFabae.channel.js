@@ -1,5 +1,5 @@
 
-var cloudMessenger = io.connect('http://192.168.8.174'); // Configured io namespace
+var cloudMessenger = io.connect('http://52.10.200.78'); // Configured io namespace
 
 //cloudMessenger.on('news', function (data) {
 //  console.log(data);
