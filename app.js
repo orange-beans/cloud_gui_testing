@@ -20,6 +20,9 @@ var
 
 	app        =  express(),
 	//server     =  http.createServer( app ),
+
+
+	TMClient = require('textmagic-rest-client'),
   socket = require( 'socket.io'),
 
 	portConfig = {
@@ -29,6 +32,8 @@ var
 
 // ============= END MODULE SCOPE VARIABLES ===============
 
+const SMS_USERNAME = "chengchengzhang";
+const API_KEY = "JTkZnwlw8c1Ia6Tya2TwZ0SKA0nWvw";
 
 // ------------- BEGIN SERVER CONFIGURATION ---------------
 // configuration for all environments
@@ -79,6 +84,10 @@ io.on('connection', function(socket) {
 
 });
 
+//var c = new TMClient(SMS_USERNAME, API_KEY);
+//c.Messages.send({text: 'Test SMS From Beans.im', phones:'+6581380936'}, function(err, res){
+//  console.log('Messages.send()', err, res);
+//});
 
 // ============== END SERVER CONFIGURATION ================
 

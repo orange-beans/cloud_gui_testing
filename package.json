@@ -16,6 +16,7 @@
     "mosca": "^1.0.2",
     "redis": "0.12.x",
     "serve-static": "1.9.x",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "textmagic-rest-client": "0.0.5"
   }
 }
