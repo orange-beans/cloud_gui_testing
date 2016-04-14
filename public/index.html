@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Beans Virtual Devices</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="js/bootstrap/bootstrap.min.css">
+  <!-- Handwrite font -->
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Patrick+Hand" />
+  <!-- Third party plugins -->
+  <!-- Timeto -->
+  <link rel="stylesheet" type="text/css" href="rs/timeTo/timeTo.css">
+
+  <link rel="stylesheet" type="text/css" href="css/virtual_devices.css">
+
+  <link rel="shortcut icon" href="rs/favicon.ico">
+  <style>
+  </style>
+  <script src="js/jq/jquery.min.js"></script>
+  <script src="js/bootstrap/bootstrap.min.js"></script>
+  <script src="js/jq/jquery-ui.min.js"></script>
+  <script src="js/jq/jquery.event.ue.js"></script>
+  <!-- ui drag/drop support for mobile devices -->
+  <script src="js/jq/jquery.ui.touch-punch.js"></script>
+  <script src="socket.io/socket.io.js"></script>
+
+  <!-- Third party plugins -->
+  <!-- Timeto -->
+  <script src="rs/timeTo/jquery.timeTo.js"></script>
+  <script src="js/jq/jquery.fn.sortable.js"></script>
+
+  <!-- amplify is better, it doesn't need a DOM to handle the event -->
+  <script src="js/amplify/amplify.core.js"></script>
+
+  <script src="js/coffee/js2coffee.min.js"></script>
+  <script src="js/coffee/coffeescript.min.js"></script>
+  <script src="js/prjX.js"></script>
+  <script src="js/prjX.util.js"></script>
+  <script src="js/prjX.language_engine.js"></script>
+  <script src="js/prjX.dom_module.js"></script>
+  <script src="js/prjX.virtual_device.js"></script>
+
+  <script src="js/appScriptTest.js"></script>
+  <script src="js/viciaFabae.channel.js"></script>
+  <script src="js/viciaFabae.virtualDevices.js"></script>
+  <!--<script src="js/prjX.device.js"></script>-->
+
+  <!--<script src="lan_obj.js"></script>-->
+  <script>
+    $(function () {
+      var
+          $stage = $('#stage'),
+          $area  = $('#btn_area'),
+          $area2 = $('#area2'),
+
+          $raw = $('#raw'),
+          $sortable = $('#sortable'),
+
+          $aft = $('#aft'),
+
+          $progress = $('.progress-bar'),
+
+          $scan = $('#btn-scan'),
+          $confirm = $('#btn-confirm'),
+          $back    = $('#btn-back'),
+          $clear   = $('#btn-clear'),
+
+          temp_set_drag,
+          sort_btns,
+          $dev_btns = $area2.find('.btn-group'),
+          _v_devices = $('#v_devices');
+
+      temp_set_drag = function () {
+        $( ".v_button, .v_light, .v_music, .v_gyro, .v_router, .v_ambient" ).draggable({
+          containment: '#stage'
+        });
+      };
+
+      $raw.sortable({
+        revert: true
+      });
+
+      $sortable.sortable({
+        animation : 150,
+        dataIdAttr: 'id',
+
+        onSort : function () {
+          console.log($sortable.sortable("toArray"));
+          // Also sort the language object array
+          //
+          lan.lan_ary.sort(function (a, b) {
+            var id_ary = $sortable.sortable("toArray");
+            return id_ary.indexOf(a["uni_id"]) > id_ary.indexOf(b["uni_id"]);
+          });
+
+          lan.str_ary  = [];
+          lan.fuc_ary  = [];
+          lan.obj_ary  = [];
+          $.each(lan.lan_ary, function(idx, _obj) {
+            lan.str_ary.push(_obj["dsp_str"]);
+            lan.fuc_ary.push(_obj["fuc_str"]);
+            lan.obj_ary.push(_obj["vicia_obj"]);
+          });
+          console.log(lan.str_ary, lan.fuc_ary);
+        }
+      });
+
+
+      $.getJSON("js/virtual_device.json", function (data) {
+        window.test = data["f_obj"][lan.lang];
+        //var Logic = vdev.V_Logic('Logic');
+        var Logic = vdev.V_Logic('Logic');
+        Logic.btn.create($area2);
+        Logic.btn.setTarget($raw);
+
+        // Create the router
+        vdev.V_Router("Beans");
+        //vdev.router.create($stage);
+       // vdev.router.btn.create($area2);
+       // vdev.router.btn.setTarget($raw);
+
+        temp_set_drag();
+      });
+
+      var g_exe = function (){};
+      // Sorting the orders of the control buttons
+      //
+      sort_btns = function ()            {
+        $dev_btns = $area2.find('.btn-group');
+        if ($dev_btns.length >= 2) {
+          $dev_btns.sort(function (a, b) {
+            return $(a).attr('title') > $(b).attr('title');
+          }).appendTo($area2);
+        }
+      };
+
+      _v_devices.on('click', sort_btns);
+
+      var tempDevics = {};
+
+      cloudMessenger.on('room-msg', function (data) {
+        console.log(data);
+        if (data.type === 'Hub-Feedback') {
+          var load = data.load;
+          var
+            _temp_device,
+            _id = load.id,
+            _type = load.type,
+            _flag = load.flag;
+
+          if (load.type === 'PROGRESS') {
+            var _value = load.value;
+            $progress.css('width', _value+'%').attr('aria-valuenow', _value);
+            $progress.text(_value.toString() + '%');
+          }
+
+          if (load.type === 'BUTTON') {
+            if (load.flag === 'create' && !tempDevics.hasOwnProperty(_id)) {
+              _temp_device = vdev.V_Button('Button');
+              _temp_device.setID(_id);
+              tempDevics[_id] = _temp_device.getId();
+              console.log(tempDevics);
+              _temp_device.create($stage);
+              _temp_device.btn.create($area2);
+              _temp_device.btn.setTarget($raw);
+            }
+            if (load.flag === 'destroy') {
+              vdev.devices[tempDevics[_id]].btn.destroy();
+              vdev.devices[tempDevics[_id]].destroy();
+              delete tempDevics[_id];
+            }
+          }
+
+          if (load.type === 'AMBIENT') {
+            if (load.flag === 'create' && !tempDevics.hasOwnProperty(_id)) {
+              _temp_device = vdev.V_Ambient('Ambient');
+              _temp_device.setID(_id);
+              tempDevics[_id] = _temp_device.getId();
+              console.log(tempDevics);
+              _temp_device.create($stage);
+              _temp_device.btn.create($area2);
+              _temp_device.btn.setTarget($raw);
+            }
+            if (load.flag === 'destroy') {
+              vdev.devices[tempDevics[_id]].btn.destroy();
+              vdev.devices[tempDevics[_id]].destroy();
+              delete tempDevics[_id];
+            }
+          }
+
+          if (load.type === 'LIGHT') {
+            if (load.flag === 'create' && !tempDevics.hasOwnProperty(_id)) {
+              _temp_device = vdev.V_Light('Light');
+              _temp_device.setID(_id);
+              tempDevics[_id] = _temp_device.getId();
+              console.log(tempDevics);
+              _temp_device.create($stage);
+              _temp_device.btn.create($area2);
+              _temp_device.btn.setTarget($raw);
+            }
+            if (load.flag === 'destroy') {
+              vdev.devices[tempDevics[_id]].btn.destroy();
+              vdev.devices[tempDevics[_id]].destroy();
+              delete tempDevics[_id];
+            }
+          }
+
+          if (load.type === 'FAN') {
+            if (load.flag === 'create' && !tempDevics.hasOwnProperty(_id)) {
+              _temp_device = vdev.V_Fan('Fan');
+              _temp_device.setID(_id);
+              tempDevics[_id] = _temp_device.getId();
+              console.log(tempDevics);
+              _temp_device.create($stage);
+              _temp_device.btn.create($area2);
+              _temp_device.btn.setTarget($raw);
+            }
+            if (load.flag === 'destroy') {
+              vdev.devices[tempDevics[_id]].btn.destroy();
+              vdev.devices[tempDevics[_id]].destroy();
+              delete tempDevics[_id];
+            }
+          }
+        }
+      });
+
+      amplify.subscribe('v-dev-table', g_exe);
+
+      var script_obj = {
+        "APPS_ID": "APPS01",
+        "LINES": [
+          {
+            "LINE_ID": "01",
+            "operators": [],
+            "conditions": [],
+            "actions": [],
+            "else_actions": []
+          }
+        ]
+      };
+
+      $scan.on('click', function () {
+        cloudMessenger.emit('room-msg', {"type":'Cloud-Command',"Command": "Scan Beans", "load": "Scanning Beans End Devices"});
+      });
+
+      $confirm.on('click', function() {
+        $progress.css('width', 0+'%').attr('aria-valuenow', 0);
+
+
+        var
+          lines = [{
+            line_id     : '01',
+            logic_array : [],
+            condition_array : [],
+            action_array : [],
+            else_action_array : []
+          }];
+
+
+        //!!! Abstract into three arrays
+        var _line = lines[0];
+        var _else_idx = 10000;
+        lan.obj_ary.forEach(function(item, index) {
+          var
+            _temp = jQuery.extend({}, item);
+          if (item.type === "LOGIC") {
+            delete _temp["type"];
+            if (_temp.operator === 'else') {
+              _else_idx = index;
+              console.log(_else_idx);
+            }
+            if (_temp.operator === 'if') {
+              _temp.operator = "start";
+              lines[0].logic_array.push(_temp);
+              console.log(lines)
+            }
+            if (_temp.operator === 'and' || _temp.operator === 'or') {
+              lines[0].logic_array.push(_temp);
+            }
+          }
+          if (item.type === "CONDITION") {
+            delete _temp["type"];
+            lines[0].condition_array.push(_temp);
+          }
+          if (item.type === "ACTION" && index <= (_else_idx)) {
+            delete _temp["type"];
+            lines[0].action_array.push(_temp);
+          }
+          if (item.type === "ACTION" && index > (_else_idx)) {
+            delete _temp["type"];
+            lines[0].else_action_array.push(_temp);
+          }
+          console.log(lines[0])
+        });
+
+        // Basic Syntax checking
+        //
+        lines.forEach(function(item, index) {
+          var
+            logic_array = item.logic_array,
+            condition_array = item.condition_array,
+            action_array = item.action_array,
+            else_action_array = item.else_action_array;
+
+          if (logic_array.length===0 || condition_array.length===0 || action_array.length===0) {
+            console.log('Can not be empty');
+            return;
+          }
+          if (logic_array.length !== condition_array.length) {
+            console.log('logic and condition length not matching');
+            return;
+          }
+          if (logic_array[0].operator !== "start") {
+            console.log('First logic must be if');
+            return;
+          }
+          //!!! Assign IDs to each item in three arrays
+          //    Note that logic_array should always have same length
+          //    as condition array
+          var _i = 1, _j = 1;
+          logic_array.forEach(function(item, index) {
+            item["id"] = "cond_" + _i;
+            condition_array[index]["id"] = "cond_" + _i;
+            _i += 1;
+          });
+
+          action_array.forEach(function(item, index) {
+            item["id"] = "action_" + _j;
+            _j += 1;
+          });
+
+          else_action_array.forEach(function(item, index) {
+            item["id"] = "action_" + _j;
+            _j += 1;
+          });
+
+          console.log(logic_array, condition_array, action_array);
+          script_obj["LINES"][index]["operators"] = logic_array;
+          script_obj["LINES"][index]["conditions"] = condition_array;
+          script_obj["LINES"][index]["actions"] = action_array;
+          script_obj["LINES"][index]["else_actions"] = else_action_array;
+        });
+
+        console.log(script_obj);
+        //cloudMessenger.emit('Cloud-Command', {"Command": "Program Beans", "load": script_obj});
+        cloudMessenger.emit('room-msg', {"type": "Cloud-Command","Command": "Program Beans", "load": script_obj});
+      });
+
+      // Go back one step of the command string
+      // clear the command and function string
+      $back.on('click', function () {
+        lan.lan_ary[lan.lan_ary.length - 1].destroy();
+        lan.lan_ary.pop();
+
+        lan.fuc_ary.pop();
+        lan.str_ary.pop();
+      });
+
+      $clear.on('click', function () {
+        script_obj = {
+          "APPS_ID": "APPS01",
+          "LINES": [
+            {
+              "LINE_ID": "01",
+              "operators": [],
+              "conditions": [],
+              "actions": [],
+              "else_actions": []
+            }
+          ]
+        };
+        lan.fuc_ary = [];
+        lan.str_ary = [];
+        lan.lan_ary = [];
+        $progress.css('width', 0+'%').attr('aria-valuenow', 0);
+        $progress.text('0%');
+
+        $sortable.html('');
+      });
+    });
+  </script>
+</head>
+<body>
+  <div style="outline:solid;height:960px;width:960px;position: relative;margin:0 auto;">
+    <div id="testclock" ></div>
+    <div id="testclock1"></div>
+    <div id="testclock2"></div>
+    <div id='area2' class="btn-group-lg" role="group" style="height:72px" aria-label="...">
+    </div>
+
+    <div style="height:40px;width:960px;float: left" >
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+          0%
+        </div>
+      </div>
+    </div>
+
+    <div style="height:400px;width:960px;float: left">
+      <!--<div class=".row handwrite" id="raw" style="white-space: pre-wrap;outline:solid thin;height:220px;width:960px;font-size: xx-large;font-weight: bold">-->
+      <!--<div class="handwrite" id="raw" style="outline:solid thin;height:220px;width:960px;font-size: x-large;font-weight: bold">-->
+      <div class="" id="raw" style="outline:solid thin;height:320px;width:960px;font-weight: bold">
+        <div id="sortable">
+
+        </div>
+      </div>
+
+      <textarea class=".col" id="aft" rows="12" cols="48"
+      style="font-weight:bold;font-family:Consolas; font-size: 17px;float:left;display: none">
+      </textarea>
+
+
+
+      <div class="btn-group" role="group" aria-label="...">
+        <div class="btn-group" role="group" style="">
+          <button id="btn-scan" class="btn-lg btn-default">Scan Beans</button>
+          <button id="btn-confirm" class="btn-lg btn-default">Program</button>
+          <button id="btn-back" class="btn-lg btn-default">Back</button>
+          <button id="btn-clear" class="btn-lg btn-default">Clear</button>
+          <!--<button id="btn-confirm" class="btn-lg btn-default">确认</button>-->
+          <!--<button id="btn-back" class="btn-lg btn-default">后退</button>-->
+          <!--<button id="btn-clear" class="btn-lg btn-default">清空</button>-->
+        </div>
+      </div>
+    </div>
+
+    <div style="height:450px;width:960px;float:left;">
+      <div id="stage" style="height:570px;width:960px;float:left">
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

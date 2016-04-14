@@ -1,0 +1,509 @@
+{
+  "f_obj" : {
+    "en" : {
+      "v_router" : {
+        "actions"     : [
+          {
+            "_comment": "***** wait 5 *****",
+            "func_str"  : "(@wait(5)#)",
+            "name"      : "经过了5秒钟",
+            "disp_str"  : "(@经过了5秒钟#)"
+          }
+        ],
+        "conditions": [
+          {
+            "_comment": "***** wait 5 *****",
+            "func_str"  : "(@_wait_5#)",
+            "name"      : "经过了5秒钟",
+            "disp_str"  : "(@经过了5秒钟#)"
+          }
+        ]
+      },
+      "v_logic"   : {
+        "actions"     : [],
+        "conditions"  : [
+          {
+            "_comment"  : "***** if *****",
+            "func_str"  : "\r\nif ",
+            "name"      : "if",
+            "vicia"     : {"operator": "if"},
+            "disp_str"  : "\r\nif "
+          },
+          {
+            "_comment": "***** then *****",
+            "func_str"  : "\r\nthen ",
+            "name"      : "then",
+            "vicia"     : {"operator": "then"},
+            "disp_str"  : "\r\nthen "
+          },
+          {
+            "_comment": "***** else *****",
+            "func_str"  : "\r\nelse ",
+            "name"      : "else",
+            "vicia"     : {"operator": "else"},
+            "disp_str"  : "\r\nelse "
+          },
+          {
+            "_comment": "***** and *****",
+            "func_str"  : "and ",
+            "name"      : "and",
+            "vicia"     : {"operator": "and"},
+            "disp_str"  : "and "
+          },
+          {
+            "_comment": "***** or *****",
+            "func_str"  : "or ",
+            "name"      : "or",
+            "vicia"     : {"operator": "or"},
+            "disp_str"  : "or "
+          },
+          {
+            "_comment": "***** not *****",
+            "func_str"  : "not ",
+            "name"      : "not",
+            "vicia"     : {"operator": "not"},
+            "disp_str"  : "not "
+          }
+        ]
+      },
+      "v_button" : {
+        "actions"     : [],
+        "conditions": [
+          {
+            "_comment": "***** is clicked *****",
+            "func_str"  : "(@is_clicked#)",
+            "vicia"     : {"title": "BUTTON_CLICKED"},
+            "name"      : "is clicked",
+            "disp_str"  : "(@is clicked#)"
+          },
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_pressed#)",
+            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 500},
+            "name"      : "is pressed for 0.5S",
+            "disp_str"  : "(@is pressed for 0.5S#)"
+          },
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_pressed#)",
+            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 1000},
+            "name"      : "is pressed for 1S",
+            "disp_str"  : "(@is pressed for 1S#)"
+          },
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_pressed#)",
+            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 2000},
+            "name"      : "is pressed for 2S",
+            "disp_str"  : "(@is pressed for 2S#)"
+          }
+        ]
+      },
+      "v_ambient" : {
+        "actions"     : [],
+        "conditions": [
+          {
+            "_comment": "***** is clicked *****",
+            "func_str"  : "(@is_clicked#)",
+            "vicia"     : {"title": "CHECK_TEMPERATURE", "condition": ">=", "value":30},
+            "name"      : "temperature is bigger than 30",
+            "disp_str"  : "(@temperature is bigger than 30#)"
+          },
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_pressed#)",
+            "vicia"     : {"title": "CHECK_MOISTURE", "condition": ">=", "value":65},
+            "name"      : "moisture is bigger than 65",
+            "disp_str"  : "(@moisture is bigger than 65#)"
+          }
+        ]
+      },
+      "v_fan"  : {
+        "actions"     : [
+          {
+            "_comment": "***** on *****",
+            "func_str"  : "(@off()#)",
+            "name"      : "on",
+            "vicia"     : {"title": "ON_FAN"},
+            "disp_str"  : "(@on#)"
+          },
+          {
+            "_comment": "***** off *****",
+            "func_str"  : "(@toggle()#)",
+            "name"      : "off",
+            "vicia"     : {"title": "OFF_FAN"},
+            "disp_str"  : "(@off#)"
+          },
+          {
+            "_comment": "***** toggle *****",
+            "func_str"  : "(@toggle()#)",
+            "name"      : "toggle",
+            "vicia"     : {"title": "TOGGLE_FAN"},
+            "disp_str"  : "(@toggle#)"
+          },
+          {
+            "_comment": "***** on for *****",
+            "func_str"  : "(@on('red')#)",
+            "name"      : "on for 2S",
+            "vicia"     : {"title": "ON_FAN_FOR", "duration": 2000},
+            "disp_str"  : "(@on for 2S#)"
+          },
+          {
+            "_comment": "***** on orange *****",
+            "func_str"  : "(@on('orange')#)",
+            "name"      : "on for 5S",
+            "vicia"     : {"title": "ON_FAN_FOR", "duration": 5000},
+            "disp_str"  : "(@on for 5S#)"
+          }
+        ],
+        "conditions"  : []
+      },
+      "v_light"  : {
+        "actions"     : [
+          {
+            "_comment": "***** off *****",
+            "func_str"  : "(@off()#)",
+            "name"      : "off",
+            "vicia"     : {"title": "OFF_RGB"},
+            "disp_str"  : "(@off#)"
+          },
+          {
+            "_comment": "***** toggle *****",
+            "func_str"  : "(@toggle()#)",
+            "name"      : "toggle",
+            "vicia"     : {"title": "TOGGLE_RGB"},
+            "disp_str"  : "(@toggle#)"
+          },
+          {
+            "_comment": "***** toggle *****",
+            "func_str"  : "(@toggle()#)",
+            "name"      : "rotate color",
+            "vicia"     : {"title": "ROTATE_RGB"},
+            "disp_str"  : "(@rotate color#)"
+          },
+          {
+            "_comment": "***** on red *****",
+            "func_str"  : "(@on('red')#)",
+            "name"      : "on red",
+            "vicia"     : {"title": "ON_RGB", "color": "red"},
+            "disp_str"  : "(@on red#)"
+          },
+          {
+            "_comment": "***** on orange *****",
+            "func_str"  : "(@on('orange')#)",
+            "name"      : "on orange",
+            "vicia"     : {"title": "ON_RGB", "color": "orange"},
+            "disp_str"  : "(@on orange#)"
+          },
+          {
+            "_comment": "***** on yellow *****",
+            "func_str"  : "(@on('yellow')#)",
+            "name"      : "on yellow",
+            "vicia"     : {"title": "ON_RGB", "color": "yellow"},
+            "disp_str"  : "(@on yellow#)"
+          },
+          {
+            "_comment": "***** on green *****",
+            "func_str"  : "(@on('green')#)",
+            "name"      : "on green",
+            "vicia"     : {"title": "ON_RGB", "color": "green"},
+            "disp_str"  : "(@on green#)"
+          },
+          {
+            "_comment": "***** on blue *****",
+            "func_str"  : "(@on('blue')#)",
+            "name"      : "on blue",
+            "vicia"     : {"title": "ON_RGB", "color": "blue"},
+            "disp_str"  : "(@on blue#)"
+          },
+          {
+            "_comment": "***** on cyan *****",
+            "func_str"  : "(@on('cyan')#)",
+            "name"      : "on cyan",
+            "vicia"     : {"title": "ON_RGB", "color": "cyan"},
+            "disp_str"  : "(@on cyan#)"
+          },
+          {
+            "_comment": "***** on purple *****",
+            "func_str"  : "(@on('purple')#)",
+            "name"      : "on purple",
+            "vicia"     : {"title": "ON_RGB", "color": "purple"},
+            "disp_str"  : "(@on purple#)"
+          }
+        ],
+        "conditions"  : []
+      },
+      "v_music"  : {
+        "actions"     : [
+          {
+            "_comment": "***** play *****",
+            "func_str"  : "(@play()#)",
+            "name"      : "play",
+            "disp_str"  : "(@play#)"
+          },
+          {
+            "_comment": "***** stop *****",
+            "func_str"  : "(@stop()#)",
+            "name"      : "stop",
+            "disp_str"  : "(@stop#)"
+          },
+          {
+            "_comment": "***** toggle *****",
+            "func_str"  : "(@toggle()#)",
+            "name"      : "toggle",
+            "disp_str"  : "(@toggle#)"
+          },
+          {
+            "_comment": "***** pause *****",
+            "func_str"  : "(@pause()#)",
+            "name"      : "pause",
+            "disp_str"  : "(@pause#)"
+          },
+          {
+            "_comment": "***** play next *****",
+            "func_str"  : "(@next()#)",
+            "name"      : "play next",
+            "disp_str"  : "(@play next#)"
+          },
+          {
+            "_comment": "***** play prev *****",
+            "func_str"  : "(@prev()#)",
+            "name"      : "play prev",
+            "disp_str"  : "(@play prev#)"
+          }
+        ],
+        "conditions"  : []
+      },
+      "v_gyro"  : {
+        "actions"     : [],
+        "conditions"  : [
+          {
+            "_comment": "***** is shaking *****",
+            "func_str"  : "(@is_shaking#)",
+            "name"      : "is shaking",
+            "disp_str"  : "(@is shaking#)"
+          },
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_shaking_hard#)",
+            "name"      : "is shaking hard",
+            "disp_str"  : "(@is shaking hard#)"
+          }
+        ]
+      }
+    },
+    "cn" : {
+      "v_router" : {
+        "actions"     : [
+          {
+            "_comment": "***** wait 5 *****",
+            "func_str"  : "(@wait(5)#)",
+            "name"      : "经过了5秒钟",
+            "disp_str"  : "(@经过了5秒钟#)"
+          }
+        ],
+        "conditions": [
+          {
+            "_comment": "***** wait 5 *****",
+            "func_str"  : "(@_wait_5#)",
+            "name"      : "经过了5秒钟",
+            "disp_str"  : "(@经过了5秒钟#)"
+          }
+        ]
+      },
+      "v_logic"   : {
+        "actions"     : [],
+        "conditions"  : [
+          {
+            "_comment"  : "***** if *****",
+            "func_str"  : "\r\nif ",
+            "name"      : "如果",
+            "disp_str"  : "\r\n如果 "
+          },
+          {
+            "_comment": "***** else *****",
+            "func_str"  : "\r\nelse ",
+            "name"      : "否则",
+            "disp_str"  : "\r\n否则 "
+          },
+          {
+            "_comment": "***** not *****",
+            "func_str"  : "not ",
+            "name"      : "不是",
+            "disp_str"  : "不是 "
+          },
+          {
+            "_comment": "***** and *****",
+            "func_str"  : "and ",
+            "name"      : "并且",
+            "disp_str"  : "并且 "
+          },
+          {
+            "_comment": "***** or *****",
+            "func_str"  : "or ",
+            "name"      : "或者",
+            "disp_str"  : "或者 "
+          }
+        ]
+      },
+      "v_button" : {
+        "actions"     : [],
+        "conditions": [
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_pressed#)",
+            "name"      : "被按下",
+            "disp_str"  : "(@被按下#)"
+          },
+          {
+            "_comment": "***** is released *****",
+            "func_str"  : "!(@is_pressed#)",
+            "name"      : "被放开",
+            "disp_str"  : "(@被放开#)"
+          },
+          {
+            "_comment": "***** is clicked *****",
+            "func_str"  : "(@is_clicked#)",
+            "name"      : "被点击",
+            "disp_str"  : "(@被点击#)"
+          }
+        ]
+      },
+      "v_light"  : {
+        "actions"     : [
+          {
+            "_comment": "***** on *****",
+            "func_str"  : "(@on()#)",
+            "name"      : "打开",
+            "disp_str"  : "(@打开#)"
+          },
+          {
+            "_comment": "***** off *****",
+            "func_str"  : "(@off()#)",
+            "name"      : "关掉",
+            "disp_str"  : "(@关掉#)"
+          },
+          {
+            "_comment": "***** toggle *****",
+            "func_str"  : "(@toggle()#)",
+            "name"      : "切换",
+            "disp_str"  : "(@切换#)"
+          },
+          {
+            "_comment": "***** fast blink *****",
+            "func_str"  : "(@blink('250')#)",
+            "name"      : "快闪烁",
+            "disp_str"  : "(@快闪烁#)"
+          },
+          {
+            "_comment": "***** slow blink *****",
+            "func_str"  : "(@blink('500')#)",
+            "name"      : "慢闪烁",
+            "disp_str"  : "(@慢闪烁#)"
+          },
+          {
+            "_comment": "***** on red *****",
+            "func_str"  : "(@on('red')#)",
+            "name"      : "变成红色",
+            "disp_str"  : "(@变成红色#)"
+          },
+          {
+            "_comment": "***** on orange *****",
+            "func_str"  : "(@on('orange')#)",
+            "name"      : "变成橙色",
+            "disp_str"  : "(@变成橙色#)"
+          },
+          {
+            "_comment": "***** on yellow *****",
+            "func_str"  : "(@on('yellow')#)",
+            "name"      : "变成黄色",
+            "disp_str"  : "(@变成黄色#)"
+          },
+          {
+            "_comment": "***** on green *****",
+            "func_str"  : "(@on('green')#)",
+            "name"      : "变成绿色",
+            "disp_str"  : "(@变成绿色#)"
+          },
+          {
+            "_comment": "***** on blue *****",
+            "func_str"  : "(@on('blue')#)",
+            "name"      : "变成蓝色",
+            "disp_str"  : "(@变成蓝色#)"
+          },
+          {
+            "_comment": "***** on cyan *****",
+            "func_str"  : "(@on('cyan')#)",
+            "name"      : "变成青色",
+            "disp_str"  : "(@变成青色#)"
+          },
+          {
+            "_comment": "***** on purple *****",
+            "func_str"  : "(@on('purple')#)",
+            "name"      : "变成紫色",
+            "disp_str"  : "(@变成紫色#)"
+          }
+        ],
+        "conditions": []
+      },
+      "v_music"  : {
+        "actions"     : [
+          {
+            "_comment": "***** play *****",
+            "func_str"  : "(@play()#)",
+            "name"      : "播放",
+            "disp_str"  : "(@播放#)"
+          },
+          {
+            "_comment": "***** stop *****",
+            "func_str"  : "(@stop()#)",
+            "name"      : "关掉",
+            "disp_str"  : "(@关掉#)"
+          },
+          {
+            "_comment": "***** toggle *****",
+            "func_str"  : "(@toggle()#)",
+            "name"      : "切换",
+            "disp_str"  : "(@切换#)"
+          },
+          {
+            "_comment": "***** pause *****",
+            "func_str"  : "(@pause()#)",
+            "name"      : "暂停",
+            "disp_str"  : "(@暂停#)"
+          },
+          {
+            "_comment": "***** play next *****",
+            "func_str"  : "(@next()#)",
+            "name"      : "播放下一首",
+            "disp_str"  : "(@播放下一首#)"
+          },
+          {
+            "_comment": "***** play prev *****",
+            "func_str"  : "(@prev()#)",
+            "name"      : "播放上一首",
+            "disp_str"  : "(@播放上一首#)"
+          }
+        ],
+        "conditions"  : []
+      },
+      "v_gyro"  : {
+        "actions"     : [],
+        "conditions"  : [
+          {
+            "_comment": "***** is shaking *****",
+            "func_str"  : "(@is_shaking#)",
+            "name"      : "被摇晃",
+            "disp_str"  : "(@被摇晃#)"
+          },
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_shaking_hard#)",
+            "name"      : "被用力摇",
+            "disp_str"  : "(@被用力摇#)"
+          }
+        ]
+      }
+    }
+  }
+}

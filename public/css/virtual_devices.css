@@ -1,0 +1,144 @@
+@font-face {
+  font-family:"VAGRoundedStd-Thin";
+  src: url("../fonts/VAGRoundedStd-Thin.otf") /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+  font-family:"VAGRoundedStd-Light";
+  src: url("../fonts/VAGRoundedStd-Light.otf") /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+  font-family:"VAGRounded";
+  src: url("../fonts/VAGRounded.ttf") /* TTF file for CSS3 browsers */
+}
+
+@font-face {
+  font-family:"VAGRoundedStd-Black";
+  src: url("../fonts/VAGRoundedStd-Black.otf") /* TTF file for CSS3 browsers */
+}
+
+.battery-bar {
+  width: 3em;
+  position: absolute;
+  padding: 0;
+  top: 0;
+  right: 1.55em;
+  margin-left :5%;
+}
+
+.v_button, .v_light, .v_router, .v_music, .v_gyro {
+  background-color : palegoldenrod;
+  position         : relative;
+  outline          : solid thin #1abc9c;
+  float            : left;
+  height           : 120px;
+  width            : 160px;
+}
+
+.v_button .name, .v_light .name, .v_router .name, .v_music .name, .v_gyro .name  {
+  font-size      : 18px;
+  color          : #000000;
+  vertical-align : middle;
+  display        : inline-block;
+  margin-left    : 5%;
+}
+
+.v_button {
+  background-color : #f5f5f5;
+}
+.v_light {
+  background-color : ghostwhite;
+}
+.v_router {
+  background-color : ghostwhite;
+}
+.v_music {
+  background-color : ghostwhite;
+}
+.v_gyro {
+  background-color : ghostwhite;
+}
+
+.circle {
+  margin-top: 5%;
+  margin-left: 35%;
+  background: grey;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
+textarea {
+  flex: 1;
+  display: block;
+  margin: 2px 0;
+  padding: 1px;
+  border: 1px solid;
+  resize: none;
+}
+
+
+body {
+  background-color: #f2f1ef;
+  line-height: normal;
+  font-family: "VAGRoundedStd-Light";
+}
+
+.module-closer {
+  width: 1.5em;
+  border: 1px solid lightgrey;
+  position: absolute;
+  padding: 0;
+  top: 0;
+  right: 0;
+}
+.module-closer:hover {
+  background : rgba(222, 38, 69, 0.91);
+}
+
+.dropdown-menu {
+  font-size: 2.5em;
+  font-weight: bolder;
+}
+
+.handwrite {
+  font: 400 3.5em/125% 'Patrick Hand', Helvetica, Sans-serif;
+  color: #333;
+}
+
+#sortable {
+  list-style-type : none;
+  margin          : 0;
+  padding         : 0;
+  width           : 960px;
+  height          : 220px;
+}
+
+#sortable span {
+  margin     : 3px 3px 3px 0;
+  padding    : 1px;
+  float      : left;
+  width      : auto;
+  height     : 40px;
+  font-size  : 2.5em;
+  text-align : center;
+  vertical-align: middle;
+  background-color: #32a5d4;
+  line-height: 40px;
+  color      : floralwhite;
+}
+
+.btn-lg {
+  font-size: 2.5em;
+}
+
+.progress {
+  height: 40px;
+}
+
+.progress-bar {
+  font-size: 2em;
+  line-height: 150%;
+}
