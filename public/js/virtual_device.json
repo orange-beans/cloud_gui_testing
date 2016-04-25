@@ -73,29 +73,29 @@
             "_comment": "***** is clicked *****",
             "func_str"  : "(@is_clicked#)",
             "vicia"     : {"title": "BUTTON_CLICKED"},
-            "name"      : "is clicked",
-            "disp_str"  : "(@is clicked#)"
+            "name"      : "is being pressed",
+            "disp_str"  : "(@is being pressed#)"
           },
           {
             "_comment": "***** is pressed *****",
             "func_str"  : "(@is_pressed#)",
             "vicia"     : {"title": "BUTTON_PRESSED", "duration": 500},
-            "name"      : "is pressed for 0.5S",
-            "disp_str"  : "(@is pressed for 0.5S#)"
-          },
-          {
-            "_comment": "***** is pressed *****",
-            "func_str"  : "(@is_pressed#)",
-            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 1000},
             "name"      : "is pressed for 1S",
             "disp_str"  : "(@is pressed for 1S#)"
           },
           {
             "_comment": "***** is pressed *****",
             "func_str"  : "(@is_pressed#)",
-            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 2000},
+            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 1000},
             "name"      : "is pressed for 2S",
             "disp_str"  : "(@is pressed for 2S#)"
+          },
+          {
+            "_comment": "***** is pressed *****",
+            "func_str"  : "(@is_pressed#)",
+            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 1500},
+            "name"      : "is pressed for 3S",
+            "disp_str"  : "(@is pressed for 3S#)"
           }
         ]
       },
@@ -105,9 +105,9 @@
           {
             "_comment": "***** is clicked *****",
             "func_str"  : "(@is_clicked#)",
-            "vicia"     : {"title": "CHECK_TEMPERATURE", "condition": ">=", "value":30},
-            "name"      : "temperature is bigger than 30",
-            "disp_str"  : "(@temperature is bigger than 30#)"
+            "vicia"     : {"title": "CHECK_TEMPERATURE", "condition": ">=", "value":28},
+            "name"      : "temperature is bigger than 28",
+            "disp_str"  : "(@temperature is bigger than 28#)"
           },
           {
             "_comment": "***** is pressed *****",

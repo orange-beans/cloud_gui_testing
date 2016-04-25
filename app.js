@@ -85,7 +85,7 @@ io.on('connection', function(socket) {
 });
 
 //var c = new TMClient(SMS_USERNAME, API_KEY);
-//c.Messages.send({text: 'Test SMS From Beans.im', phones:'+6581380936'}, function(err, res){
+//c.Messages.send({text: 'Hello there, test SMS From Beans', phones:'+6581380936'}, function(err, res){
 //  console.log('Messages.send()', err, res);
 //});
 
