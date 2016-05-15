@@ -70,32 +70,53 @@
         "actions"     : [],
         "conditions": [
           {
-            "_comment": "***** is clicked *****",
+            "_comment": "***** click *****",
             "func_str"  : "(@is_clicked#)",
-            "vicia"     : {"title": "BUTTON_CLICKED"},
+            "vicia"     : {"title": "BUTTON_CLICK"},
+            "name"      : "click",
+            "disp_str"  : "(@click#)"
+          },
+          {
+            "_comment": "***** press *****",
+            "func_str"  : "(@is_clicked#)",
+            "vicia"     : {"title": "BUTTON_PRESS"},
+            "name"      : "press",
+            "disp_str"  : "(@press#)"
+          },
+          {
+            "_comment": "***** release *****",
+            "func_str"  : "(@is_clicked#)",
+            "vicia"     : {"title": "BUTTON_RELEASE"},
+            "name"      : "release",
+            "disp_str"  : "(@release#)"
+          },
+          {
+            "_comment": "***** is being pressed *****",
+            "func_str"  : "(@is_clicked#)",
+            "vicia"     : {"title": "BUTTON_BEING_PRESSED"},
             "name"      : "is being pressed",
             "disp_str"  : "(@is being pressed#)"
           },
           {
-            "_comment": "***** is pressed *****",
+            "_comment": "***** hold *****",
             "func_str"  : "(@is_pressed#)",
-            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 500},
-            "name"      : "is pressed for 1S",
-            "disp_str"  : "(@is pressed for 1S#)"
+            "vicia"     : {"title": "BUTTON_HOLD", "duration": 1000},
+            "name"      : "hold for 1S",
+            "disp_str"  : "(@hold for 1S#)"
           },
           {
-            "_comment": "***** is pressed *****",
+            "_comment": "***** hold *****",
             "func_str"  : "(@is_pressed#)",
-            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 1000},
-            "name"      : "is pressed for 2S",
-            "disp_str"  : "(@is pressed for 2S#)"
+            "vicia"     : {"title": "BUTTON_HOLD", "duration": 2000},
+            "name"      : "hold for 2S",
+            "disp_str"  : "(@hold for 2S#)"
           },
           {
-            "_comment": "***** is pressed *****",
+            "_comment": "***** hold *****",
             "func_str"  : "(@is_pressed#)",
-            "vicia"     : {"title": "BUTTON_PRESSED", "duration": 1500},
-            "name"      : "is pressed for 3S",
-            "disp_str"  : "(@is pressed for 3S#)"
+            "vicia"     : {"title": "BUTTON_HOLD", "duration": 3000},
+            "name"      : "hold for 3S",
+            "disp_str"  : "(@hold for 3S#)"
           }
         ]
       },
