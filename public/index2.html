@@ -320,11 +320,11 @@
       amplify.subscribe('v-dev-table', g_exe);
 
       var script_obj = {
-        "APPS_ID": "APPS01",
-        "LINES": [
+        "apps_id": "APPS01",
+        "lines": [
           {
-            "LINE_ID": "01",
-            "operators": [],
+            "line_id": "01",
+            "logics": [],
             "conditions": [],
             "actions": [],
             "else_actions": []
@@ -358,16 +358,16 @@
             _temp = jQuery.extend({}, item);
           if (item.type === "LOGIC") {
             delete _temp["type"];
-            if (_temp.operator === 'else') {
+            if (_temp.logic === 'else') {
               _else_idx = index;
               console.log(_else_idx);
             }
-            if (_temp.operator === 'if') {
-              _temp.operator = "start";
+            if (_temp.logic === 'if') {
+              _temp.logic = "start";
               lines[0].logic_array.push(_temp);
               console.log(lines)
             }
-            if (_temp.operator === 'and' || _temp.operator === 'or') {
+            if (_temp.logic === 'and' || _temp.logic === 'or') {
               lines[0].logic_array.push(_temp);
             }
           }
@@ -403,7 +403,7 @@
             console.log('logic and condition length not matching');
             return;
           }
-          if (logic_array[0].operator !== "start") {
+          if (logic_array[0].logic !== "start") {
             console.log('First logic must be if');
             return;
           }
@@ -428,10 +428,10 @@
           });
 
           console.log(logic_array, condition_array, action_array);
-          script_obj["LINES"][index]["operators"] = logic_array;
-          script_obj["LINES"][index]["conditions"] = condition_array;
-          script_obj["LINES"][index]["actions"] = action_array;
-          script_obj["LINES"][index]["else_actions"] = else_action_array;
+          script_obj["lines"][index]["logics"] = logic_array;
+          script_obj["lines"][index]["conditions"] = condition_array;
+          script_obj["lines"][index]["actions"] = action_array;
+          script_obj["lines"][index]["else_actions"] = else_action_array;
         });
 
         console.log(script_obj);
@@ -450,11 +450,11 @@
 
       $clear.on('click', function () {
         script_obj = {
-          "APPS_ID": "APPS01",
-          "LINES": [
+          "apps_id": "APPS01",
+          "lines": [
             {
-              "LINE_ID": "01",
-              "operators": [],
+              "line_id": "01",
+              "logics": [],
               "conditions": [],
               "actions": [],
               "else_actions": []

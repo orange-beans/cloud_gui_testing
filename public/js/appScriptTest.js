@@ -1,43 +1,43 @@
 var APP_Script = {
-  "APPS_ID": "APPS01",
-  "LINES": [
+  "apps_id": "APPS01",
+  "lines": [
     {
-      "LINE_ID": "01",
-      "operators": [
+      "line_id": "01",
+      "logics": [
         {
           "id" : "cond_001",
-          "operator": "start"
+          "logic": "start"
         },
         {
           "id" : "cond_002",
-          "operator": "or"
+          "logic": "or"
         }
       ],
       "conditions": [
         {
-          "DEVICE_ID": "X_53945",
+          "device_id": "X_53945",
           "id"  : "cond_001",
           "title": "CHECK_PIN",
           "topic": "",
           "tags": "ctns",
-          "condition" : ">=",
+          "operator" : ">=",
           "value": 1,
           "timer": "TMR1"
         },
         {
-          "DEVICE_ID": "X_13579411",
+          "device_id": "X_13579411",
           "id"  : "cond_002",
           "title": "CHECK_MOISTURE",
           "topic": "",
           "tags": "ctns",
-          "condition" : ">=",
+          "operator" : ">=",
           "value": 65,
           "timer": "TMR1"
         }
       ],
       "actions": [
         {
-          "DEVICE_ID": "X_8589390",
+          "device_id": "X_8589390",
           "id"   : "act_001",
           "title": "ON_RGB",
           "color": "red",
@@ -47,7 +47,7 @@ var APP_Script = {
       ],
       "else_actions": [
         {
-          "DEVICE_ID": "X_8589390",
+          "device_id": "X_8589390",
           "id"   : "act_002",
           "title": "ON_RGB",
           "color": "green",
@@ -57,28 +57,28 @@ var APP_Script = {
       ]
     },
     {
-      "LINE_ID": "02",
-      "operators": [
+      "line_id": "02",
+      "logics": [
         {
           "id" : "cond_003",
-          "operator": "start"
+          "logic": "start"
         }
       ],
       "conditions": [
         {
-          "DEVICE_ID": "X_13579411",
+          "device_id": "X_13579411",
           "id"  : "cond_003",
           "title": "CHECK_TEMPERATURE",
           "topic": "",
           "tags": "ctns",
-          "condition" : ">=",
+          "operator" : ">=",
           "value": 31,
           "timer": "TMR1"
         }
       ],
       "actions": [
         {
-          "DEVICE_ID": "X_8590505",
+          "device_id": "X_8590505",
           "id"   : "act_003",
           "title": "ON_FAN",
           "duration": 2000,
@@ -87,7 +87,7 @@ var APP_Script = {
       ],
       "else_actions": [
         {
-          "DEVICE_ID": "X_8590505",
+          "device_id": "X_8590505",
           "id"   : "act_004",
           "title": "OFF_FAN",
           "duration": 2000,
@@ -96,16 +96,16 @@ var APP_Script = {
       ]
     },
     {
-      "LINE_ID": "03",
-      "operators": [
+      "line_id": "03",
+      "logics": [
         {
           "id" : "cond_004",
-          "operator": "start"
+          "logic": "start"
         }
       ],
       "conditions": [
         {
-          "DEVICE_ID": "X_13579074",
+          "device_id": "X_13579074",
           "id"  : "cond_004",
           "title": "BUTTON_PRESSED",
           "topic": "",
@@ -115,14 +115,14 @@ var APP_Script = {
       ],
       "actions": [
         {
-          "DEVICE_ID": "X_8589390",
+          "device_id": "X_8589390",
           "id"   : "act_005",
           "title": "OFF_RGB",
           "duration": 2000,
           "topic": ""
         },
         {
-          "DEVICE_ID": "X_8590505",
+          "device_id": "X_8590505",
           "id"   : "act_006",
           "title": "OFF_FAN",
           "duration": 2000,

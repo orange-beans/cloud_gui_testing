@@ -432,7 +432,7 @@ var vdev = (function () {
       _vicia_obj = {
         "type": "LOGIC",
         "id": "",
-        "operator": ""
+        "logic": ""
       }, _getVicia;
 
     _device = V_Device(_input_map);
@@ -443,7 +443,7 @@ var vdev = (function () {
     //
 
     _getVicia = function(_vicia) {
-      _vicia_obj.operator = _vicia.operator;
+      _vicia_obj.logic = _vicia.logic;
       return _vicia_obj;
     };
 
@@ -491,7 +491,7 @@ var vdev = (function () {
       },
       _vicia_obj = {
         "type": "CONDITION",
-        "DEVICE_ID": "",
+        "device_id": "",
         "id": "",
         "title": "",
         "topic": "",
@@ -562,7 +562,7 @@ var vdev = (function () {
       return _vicia_obj;
     };
     _setID = function(_id) {
-      _vicia_obj.DEVICE_ID = _id;
+      _vicia_obj.device_id = _id;
     };
 
     _added_feature = {
@@ -610,12 +610,12 @@ var vdev = (function () {
       },
       _vicia_obj = {
         "type": "CONDITION",
-        "DEVICE_ID": "",
+        "device_id": "",
         "id": "",
         "title": "",
         "topic": "",
         "tags" : "ctns",
-        "condition" : "",
+        "operator" : "",
         "value": 0,
         "timer": "TMR1"
       }, _getVicia, _setID,
@@ -645,7 +645,7 @@ var vdev = (function () {
       return _vicia_obj;
     };
     _setID = function(_id) {
-      _vicia_obj.DEVICE_ID = _id;
+      _vicia_obj.device_id = _id;
     };
 
     _added_feature = {
@@ -693,7 +693,7 @@ var vdev = (function () {
       },
       _vicia_obj = {
         "type": "ACTION",
-        "DEVICE_ID": "",
+        "device_id": "",
         "id": "",
         "title": "",
         "topic": "",
@@ -725,7 +725,7 @@ var vdev = (function () {
       return _vicia_obj;
     };
     _setID = function(_id) {
-      _vicia_obj.DEVICE_ID = _id;
+      _vicia_obj.device_id = _id;
     };
 
     _added_feature = {
@@ -786,7 +786,7 @@ var vdev = (function () {
 
       _vicia_obj = {
         "type": "ACTION",
-        "DEVICE_ID": "",
+        "device_id": "",
         "id": "",
         "title": "",
         "topic": "",
@@ -889,7 +889,7 @@ var vdev = (function () {
     };
 
     _setID = function(_id) {
-      _vicia_obj.DEVICE_ID = _id;
+      _vicia_obj.device_id = _id;
     };
 
     _added_feature = {

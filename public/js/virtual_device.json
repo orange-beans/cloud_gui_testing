@@ -26,42 +26,42 @@
             "_comment"  : "***** if *****",
             "func_str"  : "\r\nif ",
             "name"      : "if",
-            "vicia"     : {"operator": "if"},
+            "vicia"     : {"logic": "if"},
             "disp_str"  : "\r\nif "
           },
           {
             "_comment": "***** then *****",
             "func_str"  : "\r\nthen ",
             "name"      : "then",
-            "vicia"     : {"operator": "then"},
+            "vicia"     : {"logic": "then"},
             "disp_str"  : "\r\nthen "
           },
           {
             "_comment": "***** else *****",
             "func_str"  : "\r\nelse ",
             "name"      : "else",
-            "vicia"     : {"operator": "else"},
+            "vicia"     : {"logic": "else"},
             "disp_str"  : "\r\nelse "
           },
           {
             "_comment": "***** and *****",
             "func_str"  : "and ",
             "name"      : "and",
-            "vicia"     : {"operator": "and"},
+            "vicia"     : {"logic": "and"},
             "disp_str"  : "and "
           },
           {
             "_comment": "***** or *****",
             "func_str"  : "or ",
             "name"      : "or",
-            "vicia"     : {"operator": "or"},
+            "vicia"     : {"logic": "or"},
             "disp_str"  : "or "
           },
           {
             "_comment": "***** not *****",
             "func_str"  : "not ",
             "name"      : "not",
-            "vicia"     : {"operator": "not"},
+            "vicia"     : {"logic": "not"},
             "disp_str"  : "not "
           }
         ]
@@ -105,14 +105,14 @@
           {
             "_comment": "***** is clicked *****",
             "func_str"  : "(@is_clicked#)",
-            "vicia"     : {"title": "CHECK_TEMPERATURE", "condition": ">=", "value":28},
+            "vicia"     : {"title": "CHECK_TEMPERATURE", "operator": ">=", "value":28},
             "name"      : "temperature is bigger than 28",
             "disp_str"  : "(@temperature is bigger than 28#)"
           },
           {
             "_comment": "***** is pressed *****",
             "func_str"  : "(@is_pressed#)",
-            "vicia"     : {"title": "CHECK_MOISTURE", "condition": ">=", "value":65},
+            "vicia"     : {"title": "CHECK_MOISTURE", "operator": ">=", "value":65},
             "name"      : "moisture is bigger than 65",
             "disp_str"  : "(@moisture is bigger than 65#)"
           }
